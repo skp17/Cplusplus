@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-using namnespace std;
+using namespace std;
 
 int main() {
 
