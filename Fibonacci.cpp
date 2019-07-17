@@ -1,3 +1,9 @@
+// Author: Steven Peters
+// July 16, 2019
+// This program displays Fibonacci numbers
+// Your input determines how many Fibonacci numbers to show
+
+
 #include <iostream>
 #include <string>
 
