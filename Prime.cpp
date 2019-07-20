@@ -17,7 +17,7 @@ int main() {
  
  cout << "How many prime numbers do you want to see? ";
  cin >> limit;
- cout << "\nPrime numbers: ";
+ cout << "\nPrime numbers:\n";
 
  if(limit > 0) {
 	 for(int i = 2; count < limit; i++) {
