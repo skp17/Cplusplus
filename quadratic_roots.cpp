@@ -39,7 +39,7 @@ if(a=!0) {
 	}
 }
 else
-	cout << "The coefficient a cannot euqal zero" << endl;
+	cout << "The coefficient 'a' cannot equal zero" << endl;
 
 
 return 0;
