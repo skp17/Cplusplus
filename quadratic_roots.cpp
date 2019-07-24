@@ -17,7 +17,7 @@ cin >> a >> b >> c;
 
 double discriminant = (b*b) - 4*a*c;
 
-if(a=!0) {
+if(a!=0) {
 	if(discriminant >= 0) {
 		if(discriminant == 0) {
 			root1 = -b/(2*a);
