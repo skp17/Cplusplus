@@ -1,6 +1,6 @@
 // Author: Steven Peters
 // Date: July 29, 2019
-// This program sorts an array of number in ascending order
+// This program sorts an array of numbers in ascending order
 
 
 #include <iostream>
