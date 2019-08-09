@@ -19,7 +19,6 @@ int main() {
 	int size = 3000; // Amount of numbers to write to file
 
 	if( output.is_open() ) {
-		output << size << endl; // First number inside file represents how many ramdom numbers inside file
 
 		for(int i = 1; i <= size; i++) {
 			output << rand()%1000 << " ";
