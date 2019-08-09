@@ -2,9 +2,38 @@
 
 #include <iostream>
 #include <fstream>
-#include <string>
 
 using namespace std;
+
+
+void swap_elements(double &x, double &y);
+
+void ascending_order(double *arr, int arr_size);
+
+int read_from_file(double *arr);
+
+void write_to_file(double *arr, int arr_size, string &f_name);
+
+
+
+int main() {
+
+	double *array;
+	string in_filename = "numbers.dat";
+	string out_filename = "sorted_numbers.dat";
+	unsigned int size; // Represents number of elements in file
+
+	// Read elements from file and return size
+	size = read_from_file(array);
+
+	// Sort elements in ascending order
+	ascending_order(array, size);
+
+	// Write sorted array to file
+	write_to_file(array, size, out_filename);
+
+	return 0;
+}
 
 
 void swap_elements(double &x, double &y) {
@@ -13,24 +42,31 @@ void swap_elements(double &x, double &y) {
 	y = temp;
 }
 
-int main() {
+void ascending_order(double *arr, int arr_size) {
 
-	ifstream input;
-	ofstream output;
-	double *array;
-	unsigned int size; // Represents number of elements in file
+	for(int i = 0; i < arr_size; i++) {
+		for(int j = i + 1; j < arr_size; j++) {
 
-	// Read elements from file
-	input.open("numbers.dat"); // Open input stream
+			if(arr[j] < arr[i])
+				swap_elements(arr[i], arr[j]);
+		}
+	}
+}
 
-	if( input.is_open() ) {
+int read_from_file(double *arr) {
 
-		input >> size; // First number in file represents number of elements.
-		array = new double [size];
+	int arr_size;
+	ifstream in;
+	in.open("src/numbers.dat");
 
-		while ( !input.eof() ) {
-			for(int i = 0; i < size; i++) {
-				input >> array[i];
+	if( in.is_open() ) {
+
+		in >> arr_size; // First number in file represents number of elements.
+		arr = new double [arr_size];
+
+		while ( !in.eof() ) {
+			for(int i = 0; i < arr_size; i++) {
+				in >> arr[i];
 			}
 		}
 
@@ -38,38 +74,35 @@ int main() {
 	else
 		cout << "Error. File could not be opened" << endl;
 
-	// Close input stream
-	input.close();
-	
-	
-	// Sort elements in ascending order
-	for(int i = 0; i < size; i++) {
-		for(int j = i + 1; j < size; j++) {
-			
-			if(array[j] < array[i])
-				swap_elements(array[i], array[j]);
-			}
-	}
+	in.close();
 
+	return arr_size;
+}
+
+void write_to_file(double *arr, int arr_size, string &f_name) {
+
+	ofstream out;
 
 	// Write sorted elements to file
-	output.open("sorted_numbers.dat");
+	out.open(f_name.c_str());
 
-	if( output.is_open() ) {
-		output << size << endl; // First number inside file represents how many ramdom numbers inside file
+	if( out.is_open() ) {
+		out << arr_size << endl; // First number inside file represents how many ramdom numbers inside file
 
-		for(int i = 0; i < size; i++) {
-			output << array[i] << " ";
-			
+		for(int i = 0; i < arr_size; i++) {
+			out << arr[i] << " ";
+
+			// File will contain 30 numbers in each row
 			if( ( (i+1) % 30 ) == 0 )
-				output << endl;
-		}	
+				out << endl;
+		}
 	}
 	else
 		cout << "Error. File could not be opened." << endl;
 
-	// Close output stream	
-	output.close();
+	// Close output stream
+	out.close();
 
-	return 0;
+	cout << "Sorted numbers written to " << f_name << endl;
 }
+

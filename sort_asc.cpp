@@ -15,7 +15,7 @@ void swap_elements(double &x, double &y) {
 }
 
 
-int main() {
+int main(int argc, char* argv[]) {
 
 int size = 10;
 double m_array[size] = {12, 234, 23, 1, -7, 55, 18, 67, 99, 100};

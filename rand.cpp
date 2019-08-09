@@ -11,8 +11,11 @@ using namespace std;
 
 int main() {
 
+	srand(time(0)); // Use current time as seed for random generator 
+
+	const char* filename = "numbers.dat";
 	ofstream output;
-	output.open("numbers.dat");
+	output.open(filename);
 	int size = 3000; // Amount of numbers to write to file
 
 	if( output.is_open() ) {
@@ -24,6 +27,8 @@ int main() {
 			if( (i%30) == 0 )
 				output << endl;
 		}
+
+	cout << "Random numbers written to " << filename << endl;
 		
 	}
 	else
