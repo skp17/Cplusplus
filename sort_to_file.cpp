@@ -21,7 +21,7 @@ void write_to_file(vector<double> &vect, string &f_name);
 int main() {
 
 	vector<double> v;
-	string in_filename = "numbers.dat";
+	string in_filename = "random.dat";
 	string out_filename = "sorted_numbers.dat";
 
 	// Read elements from file and return size
