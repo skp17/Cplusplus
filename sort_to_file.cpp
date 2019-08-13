@@ -26,7 +26,8 @@ int main(int argc, char *argv[]) {
 	extern char *optarg;
 	extern int optind;
 	int c, err = 0;
-	int aflag = 0, dflag = 0; // 	aflag and dflag represent if the ascending 						and decsending options are parsed;
+	int aflag = 0, dflag = 0; 	// aflag and dflag represent if the ascending 
+					// and decsending options are parsed;
 	char *iname, *fname = "sorted.dat";
 	static char usage[] = "usage: sort [-ad] -i intput [-f output]\n";
 
