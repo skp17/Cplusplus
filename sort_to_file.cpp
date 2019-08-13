@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <stdlib.h>
+#include <unistd.h>
 
 using namespace std;
 
@@ -26,24 +27,65 @@ int main(int argc, char *argv[]) {
 	extern char *optarg;
 	extern int optind;
 	int c, err = 0;
-	int aflag = 0, dflag = 0; 	// aflag and dflag represent if the ascending 
-					// and decsending options are parsed;
-	char *iname, *fname = "sorted.dat";
-	static char usage[] = "usage: sort [-ad] -i intput [-f output]\n";
+
+	// aflag is ascending; dflag is descending; iflag is input 
+	int aflag = 0, dflag = 0, iflag = 0;
+	string input_name;
+	string output_name = "sorted.dat"; // Default output name
+	static char usage[] = "usage: sort [-ad] -i intput [output]\n";
 
 
-	vector<double> v;
-	string in_filename = "random.dat";
-	string out_filename = "sorted_numbers.dat";
+	vector<double> v; // Thus vector contains all numbers from the input file
 
+	while((c = getopt(argc, argv, "adi:")) != -1) {
+		switch(c) {
+			case 'a':
+				aflag = 1;
+				break;
+			case 'd':
+				dflag = 1;
+				break;
+			case 'i':
+				iflag = 1;
+				input_name = optarg;
+				break;
+			case '?':
+				err = 1;
+				break;
+		}
+	}
+
+	if(iflag == 0) {	/* -i is manditory */
+		cerr << argv[0] << ": missing -i option\n" << endl;
+		cerr << usage << endl;
+		exit(1);
+	} else if((optind) > argc) {
+		/* need at least one argument for input file */
+		
+		cerr << argv[0] << ": missing input filename" << endl;
+		cout << argv[0] << " " << usage << endl;
+		exit(1);
+	} else if(err) {
+		cout << argv[0] << " " << usage << endl;
+		exit(1);
+	}
+
+	
 	// Read elements from file
-	read_from_file(v, in_filename);
+	read_from_file(v, input_name);
 
-	// Sort elements in ascending order
-	ascending_order(v);
+	// Sort
+	if(aflag)
+		ascending_order(v);
+	if(dflag)
+		descending_order(v);
+
+	if (optind < argc)	/* these are the arguments after the command-line options */
+		for (; optind < argc; optind++)
+			output_name = argv[optind];
 
 	// Write sorted array to file
-	write_to_file(v, out_filename);
+	write_to_file(v, output_name);
 
 	return 0;
 }
