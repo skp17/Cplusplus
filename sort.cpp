@@ -1,4 +1,9 @@
-
+// Author: Steven Peters			
+// Date: August 14, 2019
+/* 	This program takes as input a file containing numbers and arranges
+ 	them in either ascending or descending order, as well as remove duplicates
+	according to the user's commands
+*/
 
 #include <iostream>
 #include <fstream>
@@ -9,6 +14,7 @@
 
 using namespace std;
 
+void print_usage();
 
 void swap_elements(double &x, double &y);
 
@@ -32,7 +38,6 @@ int main(int argc, char *argv[]) {
 	int aflag = 0, dflag = 0, iflag = 0;
 	string input_name;
 	string output_name = "sorted.dat"; // Default output name
-	static char usage[] = "usage: sort [-ad] -i intput [output]\n";
 
 
 	vector<double> v; // Thus vector contains all numbers from the input file
@@ -57,13 +62,13 @@ int main(int argc, char *argv[]) {
 
 	if(iflag == 0) {	/* -i is manditory */
 		cerr << argv[0] << ": missing -i option\n" << endl;
-		cerr << usage << endl;
+		print_usage();
 		exit(1);
 	} else if((optind) > argc) {
 		/* need at least one argument for input file */
 		
 		cerr << argv[0] << ": missing input filename" << endl;
-		cout << argv[0] << " " << usage << endl;
+		cerr << argv[0] << " "
 		exit(1);
 	} else if(err) {
 		cout << argv[0] << " " << usage << endl;
@@ -80,8 +85,7 @@ int main(int argc, char *argv[]) {
 	if(dflag)
 		descending_order(v);
 
-	if (optind < argc)	/* these are the arguments after the command-line options */
-		for (; optind < argc; optind++)
+	if (optind < argc)	/* Takes output file take from command line if present */
 			output_name = argv[optind];
 
 	// Write sorted array to file
@@ -90,6 +94,14 @@ int main(int argc, char *argv[]) {
 	return 0;
 }
 
+void print_usage() {
+	cerr << "usage: sort [-ad] -i input [output]\n";
+	cerr << "-h for display this message\n";
+	cerr << "-a for ascending order\n";
+	cerr << "-b for descending order\n";
+	cerr << "-i precedes the input filename\n";
+	cerr << "output filename is optional. Default filename is sorted.dat\n";
+	}
 
 void swap_elements(double &x, double &y) {
 	double temp = x;
