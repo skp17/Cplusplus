@@ -1,8 +1,10 @@
-// Author: Steven Peters			
-// Date: August 14, 2019
-/* 	This program takes as input a file containing numbers and arranges
- 	them in either ascending or descending order, as well as remove duplicates
-	according to the user's commands
+/* 
+ * Author: Steven Peters			
+ * Date: August 14, 2019
+ * 	
+ * This program takes as input a file containing numbers and arranges
+ * them in either ascending or descending order, as well as removes duplicates
+ * according to the user's input commands
 */
 
 #include <iostream>

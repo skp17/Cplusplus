@@ -1,8 +1,10 @@
-// Author: Steven Peters			
-// Date: August 14, 2019
-/* 	This program takes as input a file containing numbers and arranges
- 	them in either ascending or descending order, as well as remove duplicates
-	according to the user's commands
+/* 
+ * Author: Steven Peters			
+ * Date: August 14, 2019
+ * 	
+ * This program takes as input a file containing numbers and arranges
+ * them in either ascending or descending order, as well as removes duplicates
+ * according to the user's input commands
 */
 
 #include <iostream>
@@ -11,6 +13,7 @@
 #include <vector>
 #include <stdlib.h>
 #include <unistd.h>
+#include <boost/program_options.hpp>
 
 using namespace std;
 
@@ -30,6 +33,26 @@ void write_to_file(vector<double> &vect, string &f_name);
 
 int main(int argc, char *argv[]) {
 
+	namespace po = boost::program_options;
+
+	// Declare the supported options
+	po::options_description desc("Allowed options");
+	desc.add_options()
+		("help,h", "produce this message")
+		("ascending,asc", "sort in ascending order")
+		("descending,des", "sort in descending order")
+		("remove_duplicates,rmd", "remove duplicates")
+		("input,i", po::value<string>(), "name of input file")
+	;
+
+	po::variables_map vm;
+	po::store(po::parse_command_line(argc, argv, desc), vm);
+	po::notify(vm);    
+
+	if (vm.count("help")) {
+   		cout << desc << "\n";
+   		return 1;
+	}
 	
 
 	return 0;
