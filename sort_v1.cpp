@@ -29,7 +29,6 @@ void read_from_file(vector<double> &vect, string &f_name);
 void write_to_file(vector<double> &vect, string &f_name);
 
 
-
 int main(int argc, char *argv[]) {
 
 	extern char *optarg;

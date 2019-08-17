@@ -16,6 +16,7 @@
 #include <boost/program_options.hpp>
 
 using namespace std;
+using namespace boost::program_options;
 
 void swap_elements(double &x, double &y);
 
@@ -30,26 +31,24 @@ void read_from_file(vector<double> &vect, string &f_name);
 void write_to_file(vector<double> &vect, string &f_name);
 
 
-
 int main(int argc, char *argv[]) {
 
-	namespace po = boost::program_options;
-
 	// Declare the supported options
-	po::options_description desc("Allowed options");
+	options_description desc("Allowed options");
 	desc.add_options()
 		("help,h", "produce this message")
-		("ascending,asc", "sort in ascending order")
-		("descending,des", "sort in descending order")
-		("remove_duplicates,rmd", "remove duplicates")
-		("input,i", po::value<string>(), "name of input file")
+		("ascending,a", "sort in ascending order")
+		("descending,d", "sort in descending order")
+		("remove_duplicates,r", "remove duplicates")
+		("input,i", value<string>(), "name of input file")
 	;
 
-	po::variables_map vm;
-	po::store(po::parse_command_line(argc, argv, desc), vm);
-	po::notify(vm);    
+	variables_map vm;
+	store(parse_command_line(argc, argv, desc), vm);
+	notify(vm);    
 
 	if (vm.count("help")) {
+		cout << "Usage: " << argv[0] << sort [-adr] -i input [output]\n";
    		cout << desc << "\n";
    		return 1;
 	}
