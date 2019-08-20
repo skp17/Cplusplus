@@ -41,7 +41,7 @@ int main(int argc, char *argv[]) {
 	string output_name = "sorted.dat"; // Default output name
 
 
-	vector<double> v; // Thus vector contains all numbers from the input file
+	vector<double> v; // This vector contains all numbers from the input file
 
 	while((c = getopt(argc, argv, "adi:")) != -1) {
 		switch(c) {
