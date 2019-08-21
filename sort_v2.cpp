@@ -1,4 +1,6 @@
 /* 
+ * sort_v2.cpp
+ * 
  * Author: Steven Peters			
  * Date: August 14, 2019
  * 	
@@ -15,15 +17,10 @@
 #include <unistd.h>
 #include <boost/program_options.hpp>
 #include <iomanip>
+#include <unordered_set>
 
 using namespace std;
 using namespace boost::program_options;
-
-void swap_elements(double &x, double &y);
-
-void ascending_order(vector<double> &vect);
-
-void descending_order(vector<double> &vect);
 
 void remove_duplicates(vector<double> &vect);
 
@@ -47,88 +44,75 @@ int main(int argc, char *argv[]) {
 		("descending,d", "sort in descending order")
 		("remove_duplicates,r", "remove duplicates")
 		("input,i", value<string>(&input_name), "name of input file")
-		("output-file", value<string>(&output_name)->default_value("sorted.dat"), "output file")
 	;
 
-	variables_map vm;
-	store(parse_command_line(argc, argv, desc), vm);
+	// This option will be hidden from help message
+	options_description hidden("Output option");
+	hidden.add_options()
+		("output", value<string>(&output_name)->default_value("sorted.dat"), "output file [default: ./sorted.dat]")
+	;
+
+	options_description all("Allowed options");
+	all.add(desc).add(hidden);
 
 	// Declare positional options
 	positional_options_description p;
-	p.add("output-file", -1);
-	store(command_line_parser(argc, argv).options(desc).positional(p).run(), vm);
-	notify(vm);
+	p.add("output", 1);
 
-	read_from_file(m_vector, input_name);
+	variables_map vm;
+	store(command_line_parser(argc, argv).options(all).positional(p).run(), vm);
+	notify(vm);
 
 	cout << setprecision(1) << fixed;
 
 	if(vm.count("help")) {
-		cout << "Sort " << PRGM_VER << ", a program that sorts numbers in either ascending"
+		cout << "Sort v" << PRGM_VER << ", a program that sorts numbers in either ascending"
 			<< " or descending order, and removes duplicates if the user chooses.\n\n";
-		cout << "Usage: " << argv[0] << " [-adr] -i input [output]\n\n";
+		cout << "Usage: " << argv[0] << " [-r] (-a|-d) -i input [output]\n\n";
    		cout << desc << "\n";
-   		return 1;
+   		return 0;
 	}
 
 	if(vm.count("version")) {
-		cout << "Sort " << PRGM_VER << endl;
+		cout << "Sort v" << PRGM_VER << endl;
+		return 0;
+	}	
+
+	if(vm.count("input")) {
+		read_from_file(m_vector, input_name);
 	}
 
 	if(vm.count("ascending")) {
-		ascending_order(m_vector);
+		sort(m_vector.begin(), m_vector.end());
 	}
 
 	if(vm.count("descending")) {
-		descending_order(m_vector);
+		sort(m_vector.begin(), m_vector.end(), greater<double>());
 	}
 
 	if(vm.count("remove_duplicates")) {
 		remove_duplicates(m_vector);
 	}
 
-	write_to_file(m_vector, output_name);
+	if(vm.count("output")){
+		write_to_file(m_vector, output_name);
+	}
 
 	return 0;
 }
 
-void swap_elements(double &x, double &y) {
-	double temp = x;
-	x = y;
-	y = temp;
-}
-
-void ascending_order(vector<double> &vect) {
-
-	for(int i = 0; i < vect.size(); i++) {
-		for(int j = i + 1; j < vect.size(); j++) {
-
-			if(vect[j] < vect[i])
-				swap_elements(vect[i], vect[j]);
-		}
-	}
-}
-
-void descending_order(vector<double> &vect) {
-
-	for(int i = 0; i < vect.size(); i++) {
-		for(int j = i + 1; j < vect.size(); j++) {
-
-			if(vect[j] > vect[i])
-				swap_elements(vect[i], vect[j]);
-		}
-	}
-}
 
 void remove_duplicates(vector<double> &vect) {
 
-	for(int i = 0; i < vect.size(); i++) {
-		for(int j = i + 1; j < vect.size(); j++) {
+	vector<double>::iterator itr = vect.begin();
+	unordered_set<double> s;
 
-			if(vect[i] == vect[j])
-				vect.erase(vect.begin() + j);
-		}
+	for (auto curr = vect.begin(); curr != vect.end(); ++curr) {
+		if (s.insert(*curr).second)
+			*itr++ = *curr;
 	}
+
+	vect.erase(itr, vect.end());
 }
 
 void read_from_file(vector<double> &vect, string &f_name) {

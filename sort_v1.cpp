@@ -18,11 +18,7 @@ using namespace std;
 
 void print_usage();
 
-void swap_elements(double &x, double &y);
-
-void ascending_order(vector<double> &vect);
-
-void descending_order(vector<double> &vect);
+void remove_duplicates(vector<double> &vect);
 
 void read_from_file(vector<double> &vect, string &f_name);
 
@@ -82,9 +78,9 @@ int main(int argc, char *argv[]) {
 
 	// Sort
 	if(aflag)
-		ascending_order(v);
+		sort(v.begin(), v.end());
 	if(dflag)
-		descending_order(v);
+		sort(v.begin(), v.end(), greater<double>());
 
 	if (optind < argc)	/* Takes output file take from command line if present */
 			output_name = argv[optind];
@@ -104,32 +100,17 @@ void print_usage() {
 	cerr << "output filename is optional. Default filename is sorted.dat\n";
 	}
 
-void swap_elements(double &x, double &y) {
-	double temp = x;
-	x = y;
-	y = temp;
-}
+void remove_duplicates(vector<double> &vect) {
 
-void ascending_order(vector<double> &vect) {
+	vector<double>::iterator itr = vect.begin();
+	unordered_set<double> s;
 
-	for(int i = 0; i < vect.size(); i++) {
-		for(int j = i + 1; j < vect.size(); j++) {
-
-			if(vect[j] < vect[i])
-				swap_elements(vect[i], vect[j]);
-		}
+	for (auto curr = vect.begin(); curr != vect.end(); ++curr) {
+		if (s.insert(*curr).second)
+			*itr++ = *curr;
 	}
-}
 
-void descending_order(vector<double> &vect) {
-
-	for(int i = 0; i < vect.size(); i++) {
-		for(int j = i + 1; j < vect.size(); j++) {
-
-			if(vect[j] > vect[i])
-				swap_elements(vect[i], vect[j]);
-		}
-	}
+	vect.erase(itr, vect.end());
 }
 
 void read_from_file(vector<double> &vect, string &f_name) {
