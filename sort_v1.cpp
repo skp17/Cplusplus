@@ -1,4 +1,6 @@
 /* 
+ * sort_v1.cpp
+ *
  * Author: Steven Peters			
  * Date: August 14, 2019
  * 	
@@ -13,10 +15,12 @@
 #include <vector>
 #include <stdlib.h>
 #include <unistd.h>
+#include <unordered_set>
+#include <algorithm>
 
 using namespace std;
 
-void print_usage();
+void print_usage(char prgm_nm[]);
 
 void remove_duplicates(vector<double> &vect);
 
@@ -24,6 +28,7 @@ void read_from_file(vector<double> &vect, string &f_name);
 
 void write_to_file(vector<double> &vect, string &f_name);
 
+const string DEFAULT_FILENAME = "sorted.dat"; // Default output name
 
 int main(int argc, char *argv[]) {
 
@@ -33,13 +38,11 @@ int main(int argc, char *argv[]) {
 
 	// aflag is ascending; dflag is descending; iflag is input 
 	int aflag = 0, dflag = 0, iflag = 0;
-	string input_name;
-	string output_name = "sorted.dat"; // Default output name
-
+	string input_name, output_name = DEFAULT_FILENAME;
 
 	vector<double> v; // This vector contains all numbers from the input file
 
-	while((c = getopt(argc, argv, "adi:")) != -1) {
+	while((c = getopt(argc, argv, "adi:h")) != -1) {
 		switch(c) {
 			case 'a':
 				aflag = 1;
@@ -51,6 +54,9 @@ int main(int argc, char *argv[]) {
 				iflag = 1;
 				input_name = optarg;
 				break;
+			case 'h':
+				print_usage(argv[0]);
+				exit(1);
 			case '?':
 				err = 1;
 				break;
@@ -59,16 +65,16 @@ int main(int argc, char *argv[]) {
 
 	if(iflag == 0) {	/* -i is manditory */
 		cerr << argv[0] << ": missing -i option\n" << endl;
-		print_usage();
+		print_usage(argv[0]);
 		exit(1);
 	} else if((optind) > argc) {
 		/* need at least one argument for input file */
 		
 		cerr << argv[0] << ": missing input filename" << endl;
-		cerr << argv[0] << " "
+		print_usage(argv[0]);
 		exit(1);
 	} else if(err) {
-		cout << argv[0] << " " << usage << endl;
+		print_usage(argv[0]);
 		exit(1);
 	}
 
@@ -91,13 +97,13 @@ int main(int argc, char *argv[]) {
 	return 0;
 }
 
-void print_usage() {
-	cerr << "usage: sort [-ad] -i input [output]\n";
-	cerr << "-h for display this message\n";
-	cerr << "-a for ascending order\n";
-	cerr << "-b for descending order\n";
-	cerr << "-i precedes the input filename\n";
-	cerr << "output filename is optional. Default filename is sorted.dat\n";
+void print_usage(char prgm_nm[]) {
+	cerr << "usage: " << prgm_nm << " [-ad] -i input [output]\n\n";
+	cerr << "\t-h \tdisplay this message\n";
+	cerr << "\t-a \tascending order\n";
+	cerr << "\t-d \tdescending order\n";
+	cerr << "\toutput \t[default = " << DEFAULT_FILENAME << "]\n";
+	//cerr << "-i precedes the input filename\n";
 	}
 
 void remove_duplicates(vector<double> &vect) {
