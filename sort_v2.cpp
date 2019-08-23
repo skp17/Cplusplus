@@ -13,10 +13,10 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include <stdlib.h>
-#include <unistd.h>
+#include <stdlib.h>						/* for exit */
+#include <unistd.h>						/* for getopt */
 #include <boost/program_options.hpp>
-#include <iomanip>
+#include <iomanip>						/* for setprecision */
 #include <unordered_set>
 
 using namespace std;
@@ -100,7 +100,6 @@ int main(int argc, char *argv[]) {
 
 	return 0;
 }
-
 
 void remove_duplicates(vector<double> &vect) {
 
