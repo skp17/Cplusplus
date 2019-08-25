@@ -68,7 +68,7 @@ int main(int argc, char *argv[]) {
 	if(vm.count("help")) {
 		cout << "Sort v" << PRGM_VER << ", a program that sorts numbers in either ascending"
 			<< " or descending order,\nand removes duplicates if the user chooses.\n\n";
-		cout << "Usage: " << argv[0] << " [-adr] -i input [output]\n\n";
+		cout << "Usage: " << argv[0] << " [-a|-d] [r] -i input [output]\n\n";
    		cout << desc << "\n";
    		return 0;
 	}
