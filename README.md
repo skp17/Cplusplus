@@ -1,7 +1,7 @@
 # Cplusplus
-C++ functions
+##C++ functions
 
-helloWorld.cpp
+helloWorld.cpp\n
 Fibonacci.cpp
 Prime.cpp
 sizeof.cpp
