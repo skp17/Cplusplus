@@ -19,7 +19,6 @@ void print_usage(string pgrm_nm) {
 	cerr << "\t-h, --help\tPrint this help message and exit\n";
 	cerr << "\t-s, --size <n>\tAmount of random numbers to produce [default: 3000]\n";
 	cerr << "\t    <outfile>\toutput file [default: " << DEFAULT_OUTFILE << "]\n";
-
 }
 
 void writeToFile(string &f_name, unsigned int size) {

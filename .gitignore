@@ -3,3 +3,4 @@
 !*.c
 *.swp
 test.cpp
+rm_duplex.cpp

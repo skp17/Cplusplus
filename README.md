@@ -6,10 +6,23 @@ helloWorld.cpp
 Fibonacci.cpp
 
 Prime.cpp
+
 sizeof.cpp
+
 limits.cpp
+
 quadratic_roots.cpp
+
 factorial.cpp (recursive)
+
 factorial2.cpp (iteration)
-sort_asc.cpp (sorts numbers in ascending order)
-sort_des.cpp (sorts numbers in descending order)
+
+sizeof.cpp
+
+rand.cpp
+
+sort_v1.cpp
+
+sort_v2.cpp
+
+
