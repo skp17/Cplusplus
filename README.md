@@ -1,8 +1,10 @@
 # Cplusplus
-##C++ functions
+## C++ functions
 
-helloWorld.cpp\n
+helloWorld.cpp
+
 Fibonacci.cpp
+
 Prime.cpp
 sizeof.cpp
 limits.cpp
