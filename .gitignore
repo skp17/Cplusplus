@@ -1,6 +1,6 @@
-*
-!*.cpp
-!*.c
 *.swp
+helloWorld
+test
 test.cpp
+rm_duplex
 rm_duplex.cpp
