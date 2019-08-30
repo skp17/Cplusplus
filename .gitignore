@@ -1,4 +1,6 @@
 *.swp
+*.dat
+*.txt
 helloWorld
 test
 test.cpp
