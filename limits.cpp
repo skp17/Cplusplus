@@ -34,9 +34,9 @@ cout << "signed long int" << setw(11) << sizeof(long int) << setw(23) << (double
 
 cout << "unsigned long int" << setw(9) << sizeof(unsigned long int) << setw(23) << numeric_limits<unsigned long int>::min() << " to " << (double)numeric_limits<unsigned long int>::max() << endl;
 
-//cout << "signed long long int" << setw(6) << sizeof(long long int) << setw(23) << (double)numeric_limits<long long int>::min() << " to " << (double)numeric_limits<long long int>::max() << endl;
+cout << "signed long long int" << setw(6) << sizeof(long long int) << setw(23) << (double)numeric_limits<long long int>::min() << " to " << (double)numeric_limits<long long int>::max() << endl;
 
-//cout << "unsigned long long int" << setw(4) << sizeof(unsigned long long int) << setw(23) << numeric_limits<unsigned long long int>::min() << " to " << (double)numeric_limits<unsigned long long int>::max() << endl;
+cout << "unsigned long long int" << setw(4) << sizeof(unsigned long long int) << setw(23) << numeric_limits<unsigned long long int>::min() << " to " << (double)numeric_limits<unsigned long long int>::max() << endl;
 
 cout << "float" << setw(21) << sizeof(float) << setw(23) << numeric_limits<float>::min() << " to " << numeric_limits<float>::max() << endl;
 

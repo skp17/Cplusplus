@@ -1,8 +1,10 @@
 *.swp
 *.dat
 *.txt
+/.vscode/*
 helloWorld
 test
 test.cpp
 rm_duplex
 rm_duplex.cpp
+factorial2.cpp

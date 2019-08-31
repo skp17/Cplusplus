@@ -1,0 +1,42 @@
+# Compile all .cpp files found inside this folder and put the
+# executables inside ./Windows_executables
+
+CC = g++
+CFLAGS = -std=c++11 -static
+BOOST = "C:\Program Files\boost_1_61_0"
+PO_LBOOST = "C:\Program Files\boost_1_61_0\stage\lib\libboost_program_options-mgw63-mt-sd-1_61.a"
+
+all:  factorial bfactorial fibonacci limits prime quadratic_roots rand sizeof sort bsort
+
+factorial:
+	$(CC) factorial.cpp -o Windows_executables\factorial
+	
+bfactorial:
+	$(CC) $(CFLAGS) -I $(BOOST) bfactorial.cpp -o Windows_executables\bfactorial
+	
+fibonacci:
+	$(CC) fibonacci.cpp -o Windows_executables\fibonacci
+	
+limits:
+	$(CC) $(CFLAGS) limits.cpp -o Windows_executables\limits
+	
+prime:
+	$(CC) prime.cpp -o Windows_executables\prime
+	
+quadratic_roots:
+	$(CC) quadratic_roots.cpp -o Windows_executables\quadratic_roots
+	
+rand:
+	$(CC) rand.cpp -o Windows_executables\rand
+	
+sizeof:
+	$(CC) sizeof.cpp -o Windows_executables\sizeof
+	
+sort:
+	$(CC) $(CFLAGS) sort.cpp -o Windows_executables\sort
+
+bsort:
+	$(CC) -I $(BOOST) bsort.cpp -o Windows_executables\bsort $(PO_LBOOST) $(CFLAGS)
+
+clean: 
+	del *.exe

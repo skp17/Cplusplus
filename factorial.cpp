@@ -7,7 +7,7 @@
 
 using namespace std;
 
-long double factorial(int n) {
+unsigned long long factorial(unsigned int n) {
 
 	if(n > 0)
 		return n*factorial(n-1);
@@ -18,12 +18,12 @@ long double factorial(int n) {
 
 int main() {
 	
-	int input;	
+	unsigned int input;	
 
 	cout << "Enter a positive integer" << endl;
 	cin >> input;
 
-	cout <<	input << "! = " << scientific << factorial(input) << endl;
+	cout <<	input << "! = " << factorial(input) << endl;
 
 	return 0;
 }

@@ -11,9 +11,9 @@ using namespace std;
 
 int main() {
 
- long double previous = 1;
- long double current = 1;
- long double sum;
+ unsigned long long int previous = 1;
+ unsigned long long int current = 1;
+ unsigned long long int sum;
  int count;
 
  cout << "How many fibonacci numbers do you want to see?" << endl;
