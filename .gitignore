@@ -1,6 +1,7 @@
 *.swp
 *.dat
 *.txt
+*.exe
 /.vscode/*
 helloWorld
 test

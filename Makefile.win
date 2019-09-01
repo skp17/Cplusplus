@@ -6,7 +6,7 @@ CFLAGS = -std=c++11 -static
 BOOST = "C:\Program Files\boost_1_61_0"
 PO_LBOOST = "C:\Program Files\boost_1_61_0\stage\lib\libboost_program_options-mgw63-mt-sd-1_61.a"
 
-all:  factorial bfactorial fibonacci limits prime quadratic_roots rand sizeof sort bsort
+all:  factorial bfactorial fibonacci limits prime quadratic_roots rand sizeof sort bsort nperfect
 
 factorial:
 	$(CC) factorial.cpp -o Windows_executables\factorial
@@ -37,6 +37,9 @@ sort:
 
 bsort:
 	$(CC) -I $(BOOST) bsort.cpp -o Windows_executables\bsort $(PO_LBOOST) $(CFLAGS)
+
+nperfect:
+	$(CC) nperfect.cpp -o Windows_executables/nperfect
 
 clean: 
 	del *.exe
