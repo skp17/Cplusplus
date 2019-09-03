@@ -11,11 +11,11 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include <stdlib.h> /* for exit */
+#include <stdlib.h> 	/* for exit */
 #include <getopt.h>
-#include <iomanip> /* setprecision */
+#include <iomanip> 		/* setprecision */
 #include <unordered_set>
-#include <algorithm> /* for sort */
+#include <algorithm> 	/* for sort */
 
 using namespace std;
 

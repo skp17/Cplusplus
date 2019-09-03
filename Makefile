@@ -31,7 +31,7 @@ rand:
 	${CC} rand.cpp -o Linux_executables/rand
 	
 sizeof:
-	${CC} sizeof.cpp -o Linux_executables/sizeof
+	${CC} ${CFLAGS} sizeof.cpp -o Linux_executables/sizeof
 	
 sort:
 	${CC} ${CFLAGS} sort.cpp -o Linux_executables/sort

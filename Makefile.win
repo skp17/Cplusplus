@@ -30,7 +30,7 @@ rand:
 	$(CC) rand.cpp -o Windows_executables\rand
 	
 sizeof:
-	$(CC) sizeof.cpp -o Windows_executables\sizeof
+	$(CC) $(CLAGS) sizeof.cpp -o Windows_executables\sizeof
 	
 sort:
 	$(CC) $(CFLAGS) sort.cpp -o Windows_executables\sort
