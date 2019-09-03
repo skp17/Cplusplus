@@ -11,7 +11,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include <stdlib.h> 	/* for exit */
+#include <stdlib.h> 	/* for exit, abort */
 #include <getopt.h>
 #include <iomanip> 		/* setprecision */
 #include <unordered_set>
