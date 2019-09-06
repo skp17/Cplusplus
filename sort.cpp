@@ -19,7 +19,7 @@
 
 using namespace std;
 
-void print_usage();
+void print_usage(string name);
 
 void remove_duplicates(vector<double> &vect);
 
@@ -28,13 +28,12 @@ void readFromFile(vector<double> &vect, string &f_name);
 void readToFile(vector<double> &vect, string &f_name);
 
 const string DEFAULT_FILENAME = "sorted.dat"; // Default output name
-string program_name;
 
 int main(int argc, char *argv[])
 {
 
 	const float PRGM_VER = 3.0; // Program version
-	program_name = argv[0];
+	const string PGRM_NM = argv[0];
 	string input_name, output_name = DEFAULT_FILENAME;
 	vector<double> v; /* This vector contains all numbers from the input file */
 
@@ -80,10 +79,10 @@ int main(int argc, char *argv[])
 			input_name = optarg;
 			break;
 		case 'h':
-			print_usage();
+			print_usage(PGRM_NM);
 			exit(1);
 		case 'v':
-			cout << program_name << " " << PRGM_VER << endl;
+			cout << PGRM_NM << " v" << setprecision(1) << fixed << PRGM_VER << endl;
 			exit(1);
 		case '?':
 			if (optopt == 'i')
@@ -105,12 +104,12 @@ int main(int argc, char *argv[])
 	{ /* -i is manditory */
 		cerr << argv[0] << ": missing -i option\n"
 			 << endl;
-		print_usage();
+		print_usage(PGRM_NM);
 		exit(1);
 	}
 	else if (err)
 	{
-		print_usage();
+		print_usage(PGRM_NM);
 		exit(1);
 	}
 
@@ -134,9 +133,9 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
-void print_usage()
+void print_usage(string name)
 {
-	cerr << "usage: " << program_name << " [-a|d] [r] -i <infile> [<outfile>]\n\n";
+	cerr << "usage: " << name << " [-a|d] [r] -i <infile> [<outfile>]\n\n";
 	cerr << "\t-a, --ascending \t\tascending order\n";
 	cerr << "\t-d, --descending \t\tdescending order\n";
 	cerr << "\t-r, --remove_duplicates \tremove duplicates\n";
@@ -189,7 +188,6 @@ void readFromFile(vector<double> &vect, string &f_name)
 
 void readToFile(vector<double> &vect, string &f_name)
 {
-
 	ofstream out;
 
 	// Write sorted elements to file

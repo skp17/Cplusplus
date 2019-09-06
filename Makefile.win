@@ -2,11 +2,11 @@
 # executables inside ./Windows_executables
 
 CC = g++
-CFLAGS = -std=c++11 -static
+CFLAGS = -std=c++11 -static -ansi -pedantic -Wall -Wextra -Weffc++
 BOOST = "C:\Program Files\boost_1_61_0"
 PO_LBOOST = "C:\Program Files\boost_1_61_0\stage\lib\libboost_program_options-mgw63-mt-sd-1_61.a"
 
-all:  factorial bfactorial fibonacci limits prime quadratic_roots rand sizeof sort bsort nperfect
+all:  factorial bfactorial fibonacci limits prime quadratic_roots rand sizeof sort bsort nperfect isPrime
 
 factorial:
 	$(CC) factorial.cpp -o Windows_executables\factorial
@@ -40,6 +40,9 @@ bsort:
 
 nperfect:
 	$(CC) nperfect.cpp -o Windows_executables/nperfect
+
+isPrime:
+	$(CC) $(CFLAGS) isPrime.cpp -o isPrime
 
 clean: 
 	del *.exe
