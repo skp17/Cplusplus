@@ -1,30 +1,30 @@
 # Cplusplus
 ## C++ functions
 
-helloWorld.cpp
+### helloWorld.cpp
 
-Fibonacci.cpp
+### Fibonacci.cpp
 
-Prime.cpp
+### prime.cpp
 
-sizeof.cpp
+### sizeof.cpp
 
-limits.cpp
+### limits.cpp
 
-quadratic_roots.cpp
+### quadratic_roots.cpp
 
-factorial.cpp (recursive)
+### factorial.cpp
 
-factorial2.cpp (iteration)
+### bfactorial.cpp (Uses BOOST libraries)
 
-sizeof.cpp
+### sizeof.cpp
 
-rand.cpp
+### rand.cpp
 
-sort_v1.cpp
+### sort.cpp
 
-sort_v2.cpp
+### bsort.cpp (Uses BOOST libraries)
 
-nperfect.cpp
+### nperfect.cpp
 
 
