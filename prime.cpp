@@ -1,4 +1,4 @@
-/* File: isPrime.cpp
+/* File: prime.cpp
  * Name: Steven Peters
  * Date: August 22, 2019
  * Description: This program lets you know whether an integer is prime or not,
@@ -28,7 +28,7 @@ void print_usage(string prog_name) {
     cerr << "\t-o, --output \tWrites prime numbers to a file\n";
 }
 
-bool prime(unsigned int n) {
+bool isPrime(unsigned int n) {
     bool flag = true;
     if (n < 2)
         flag = false;
@@ -51,7 +51,7 @@ void getArgsList(int argc, char *argv[], int optind) {
     while (optind < argc) {
         unsigned int integer = atoi(argv[optind]);
         if (integer > MINIMUM && integer < MAXIMUM) {
-            if (prime(integer))
+            if (isPrime(integer))
                 cout << integer << " is a prime number" << endl;
             else
                 cout << integer << " is not a prime number" << endl;
@@ -67,7 +67,7 @@ void printPrimes(unsigned int amount) {
     cout << "Prime numbers:\n";
     unsigned int count = 0;
     for (unsigned int i = 2; (count < amount); i++) {
-        if (prime(i)) {
+        if (isPrime(i)) {
                 cout << i << " ";
                 count++;
         }
@@ -81,7 +81,7 @@ bool writeToFile(unsigned int amount, string f_name) {
     if (outfile.is_open()) {
         unsigned int count = 0;
         for (unsigned int i = 2; (count < amount); i++) {
-            if (prime(i)) {
+            if (isPrime(i)) {
                 outfile << i << " ";
                 count++;
             }

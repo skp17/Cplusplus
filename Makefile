@@ -40,7 +40,7 @@ bsort:
 	${CC} -I ${BOOST} bsort.cpp -o Linux_executables/bsort ${PO_LBOOST} ${CFLAGS}
 
 nperfect:
-	${CC} nperfect.cpp -o Linux_executables/nperfect
+	${CC} ${CFLAGS} nperfect.cpp -o Linux_executables/nperfect
 
 clean: 
 	find . -maxdepth 1 -type f -executable -exec rm {} +

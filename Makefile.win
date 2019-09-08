@@ -37,7 +37,7 @@ bsort:
 	$(CC) -I $(BOOST) bsort.cpp -o Windows_executables\bsort $(PO_LBOOST) $(CFLAGS)
 
 nperfect:
-	$(CC) nperfect.cpp -o Windows_executables/nperfect
+	$(CC) $(CFLAGS) nperfect.cpp -o Windows_executables/nperfect
 
 prime:
 	$(CC) $(CFLAGS) $(STRICT_FLAGS) prime.cpp -o Windows_executables\prime

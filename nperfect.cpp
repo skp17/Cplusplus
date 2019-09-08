@@ -9,42 +9,52 @@
 
 #include <iostream>
 #include <string>
+#include <cmath>
 
 using namespace std;
 
-bool isPerfect(unsigned long long int num) {
-
-    // Add up the divisors
-    unsigned long long sum = 0;
-        for (int i = 1; i <= num/2; i++) {
-            if (num % i == 0)
-                sum = sum + i; 
+bool isPrime(unsigned int n) {
+    bool flag = true;
+    if (n < 2)
+        flag = false;
+    else if (n == 2)
+        flag = true;
+    else if (n%2 == 0)
+        flag = false;
+    else {
+        for (unsigned int i = 3; i < n; i+=2) {
+            if (n%i == 0) {
+                flag = false;
+                break;
+            }
         }
-
-    // If sum of divisors equal num, then return true
-        if (sum == num)
-            return true;
-        else
-            return false;   
+    }
+    return flag;
 }
 
 int main() {
 
+    unsigned int limit;
     unsigned int count = 0;
-    unsigned long long number = 1;
-    unsigned int amount;
+    unsigned long long int perfectNum; 
+    cout << "How many perfect numbers do you want displayed?\n";
+    cin >> limit;
+    cout << "Perfect numbers:\n";
 
-    cout << "Enter the amount of perfect numbers you want to be displayed\n";
-    cin >> amount;
-    cout << "Perfect numbers: ";
-
-    while (count < amount) {
-        if ( isPerfect(number) ) {
+    for (unsigned int i = 2; count < limit; i++) {
+        if (isPrime(i)) {
+            perfectNum = pow(2.0, i-1)*( pow(2,i) - 1);
             count++;
-            cout << number << " ";
+
+            /* if large enough output in scientific natation */
+            if (perfectNum < 9999.0)
+                cout << perfectNum << " ";
+            else
+                cout << scientific << (double)perfectNum << " ";
         }
-        number++;
     }
+
+    cout << endl;
 
     return 0;
 }
