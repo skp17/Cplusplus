@@ -1,46 +1,46 @@
 # Compile all .cpp files found inside this folder and put the
 # executables inside ./Linux_executables
 
-CC = g++
-CFLAGS = -std=c++11 -static
-BOOST = /usr/local/boost_1_61_0/
-PO_LBOOST = /usr/local/boost_1_61_0/bin.v2/libs/program_options/build/gcc-5.4.0/release/link-static/threading-multi/libboost_program_options.a
-
+CXX = g++
+CXXFLAGS = -std=c++11 -static
+IDIR = /usr/local/boost_1_61_0
+LDIR = $(IDIR)/bin.v2/libs/program_options/build/gcc-5.4.0/release/link-static/threading-multi/libboost_program_options.a
+EDIR = ./Linux_executables
 
 all:  factorial bfactorial fibonacci limits prime quadratic_roots rand sizeof sort bsort nperfect
 
 factorial:
-	${CC} factorial.cpp -o Linux_executables/factorial
+	$(CXX) factorial.cpp -o $(EDIR)/factorial
 	
 bfactorial:
-	${CC} -I ${BOOST} bfactorial.cpp -o Linux_executables/bfactorial
+	$(CXX) -I $(IDIR) bfactorial.cpp -o $(EDIR)/bfactorial
 	
 fibonacci:
-	${CC} fibonacci.cpp -o Linux_executables/fibonacci
+	$(CXX) fibonacci.cpp -o $(EDIR)/fibonacci
 	
 limits:
-	${CC} ${CFLAGS} limits.cpp -o Linux_executables/limits
+	$(CXX) $(CXXFLAGS) limits.cpp -o $(EDIR)/limits
 	
 prime:
-	${CC} prime.cpp -o Linux_executables/prime
+	$(CXX) prime.cpp -o $(EDIR)/prime
 	
 quadratic_roots:
-	${CC} quadratic_roots.cpp -o Linux_executables/quadratic_roots
+	$(CXX) quadratic_roots.cpp -o $(EDIR)/quadratic_roots
 	
 rand:
-	${CC} rand.cpp -o Linux_executables/rand
+	$(CXX) rand.cpp -o $(EDIR)/rand
 	
 sizeof:
-	${CC} ${CFLAGS} sizeof.cpp -o Linux_executables/sizeof
+	$(CXX) $(CXXFLAGS) sizeof.cpp -o $(EDIR)/sizeof
 	
 sort:
-	${CC} ${CFLAGS} sort.cpp -o Linux_executables/sort
+	$(CXX) $(CXXFLAGS) sort.cpp -o $(EDIR)/sort
 
 bsort:
-	${CC} -I ${BOOST} bsort.cpp -o Linux_executables/bsort ${PO_LBOOST} ${CFLAGS}
+	$(CXX) -I $(IDIR) bsort.cpp -o $(EDIR)/bsort $(LDIR) $(CXXFLAGS)
 
 nperfect:
-	${CC} ${CFLAGS} nperfect.cpp -o Linux_executables/nperfect
+	$(CXX) $(CXXFLAGS) nperfect.cpp -o $(EDIR)/nperfect
 
 clean: 
-	find . -maxdepth 1 -type f -executable -exec rm {} +
+	find . -maxdepth 1 -type f -executable -exec rm () +
