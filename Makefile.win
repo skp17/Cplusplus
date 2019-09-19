@@ -1,47 +1,47 @@
 # Compile all .cpp files found inside this folder and put the
 # executables inside ./Windows_executables
 
-CC = g++
-CFLAGS = -std=c++11 -static
-STRICT_FLAGS = -ansi -pedantic -Wall -Wextra -Weffc++
-BOOST = "C:\Program Files\boost_1_61_0"
-PO_LBOOST = "C:\Program Files\boost_1_61_0\stage\lib\libboost_program_options-mgw63-mt-sd-1_61.a"
+CXX = g++
+CXXFLAGS = -Wall -std=c++11 -static
+IDIR = "C:\Program Files\boost_1_61_0"
+LDIR = "C:\Program Files\boost_1_61_0\stage\lib\libboost_program_options-mgw63-mt-sd-1_61.a"
+EDIR = Windows_executables
+OBJS = factorial bfactorial fibonacci limits prime quadratic_roots rand sizeof sort bsort nperfect
 
-all:  factorial fibonacci limits quadratic_roots rand sizeof sort nperfect prime bfactorial bsort 
+all:  $(OBJS)
 
-factorial:
-	$(CC) factorial.cpp -o Windows_executables\factorial
+factorial: factorial.cpp
+	$(CXX) factorial.cpp -o $(EDIR)/$@
 	
-bfactorial:
-	$(CC) $(CFLAGS) -I $(BOOST) bfactorial.cpp -o Windows_executables\bfactorial
+bfactorial: bfactorial.cpp
+	$(CXX) -I $(IDIR) bfactorial.cpp -o $(EDIR)/$@
 	
-fibonacci:
-	$(CC) fibonacci.cpp -o Windows_executables\fibonacci
+fibonacci: fibonacci.cpp
+	$(CXX) fibonacci.cpp -o $(EDIR)/$@
 	
-limits:
-	$(CC) $(CFLAGS) limits.cpp -o Windows_executables\limits
+limits: limits.cpp
+	$(CXX) $(CXXFLAGS) limits.cpp -o $(EDIR)/$@
 	
-quadratic_roots:
-	$(CC) quadratic_roots.cpp -o Windows_executables\quadratic_roots
+prime: prime.cpp
+	$(CXX) prime.cpp -o $(EDIR)/$@
 	
-rand:
-	$(CC) rand.cpp -o Windows_executables\rand
+quadratic_roots: quadratic_roots.cpp
+	$(CXX) quadratic_roots.cpp -o $(EDIR)/$@
 	
-sizeof:
-	$(CC) $(CLAGS) sizeof.cpp -o Windows_executables\sizeof
+rand: rand.cpp
+	$(CXX) rand.cpp -o $(EDIR)/$@
 	
-sort:
-	$(CC) $(CFLAGS) sort.cpp -o Windows_executables\sort
+sizeof: sizeof.cpp
+	$(CXX) $(CXXFLAGS) sizeof.cpp -o $(EDIR)/$@
+	
+sort: sort.cpp
+	$(CXX) $(CXXFLAGS) sort.cpp -o $(EDIR)/$@
 
-bsort:
-	$(CC) -I $(BOOST) bsort.cpp -o Windows_executables\bsort $(PO_LBOOST) $(CFLAGS)
+bsort: bsort.cpp
+	$(CXX) -I $(IDIR) bsort.cpp -o $(EDIR)/$@ $(LDIR) $(CXXFLAGS)
 
-nperfect:
-	$(CC) $(CFLAGS) nperfect.cpp -o Windows_executables/nperfect
-
-prime:
-	$(CC) $(CFLAGS) $(STRICT_FLAGS) prime.cpp -o Windows_executables\prime
+nperfect: nperfect.cpp
+	$(CXX) $(CXXFLAGS) nperfect.cpp -o $(EDIR)/$@
 
 clean:
 	del *.exe
-	del Windows_executables\*.exe
