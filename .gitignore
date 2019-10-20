@@ -8,4 +8,6 @@ test
 test.cpp
 rm_duplex
 rm_duplex.cpp
+factorial.cpp
+/Linux_executables/factorial
 factorial2.cpp

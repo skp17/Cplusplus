@@ -1,4 +1,4 @@
-/* sort_v1.cpp
+/* sort.cpp
  * Author: Steven Peters			
  * Date: August 14, 2019
  * 	

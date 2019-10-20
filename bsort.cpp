@@ -1,5 +1,4 @@
 /* File: bsort.cpp
- * 		*Files that start with b use Boost Libraries
  * 
  * Author: Steven Peters			
  * Date: August 14, 2019

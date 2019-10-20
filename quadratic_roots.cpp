@@ -1,5 +1,6 @@
 // Author: Steven Peters
 // July 21, 2019
+// This program calculates the roots of a quadratic function
 
 #include <iostream>
 #include <string>

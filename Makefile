@@ -7,13 +7,10 @@ IDIR = /usr/local/boost_1_61_0
 LDIR = $(IDIR)/bin.v2/libs/program_options/build/gcc-5.4.0/release/link-static/threading-multi/libboost_program_options.a
 EDIR = ./Linux_executables
 
-all:  factorial bfactorial fibonacci limits prime quadratic_roots rand sizeof sort bsort nperfect
-
-factorial:
-	$(CXX) factorial.cpp -o $(EDIR)/factorial
+all:  factorial fibonacci limits prime quadratic_roots rand sizeof sort bsort nperfect
 	
-bfactorial:
-	$(CXX) -I $(IDIR) bfactorial.cpp -o $(EDIR)/bfactorial
+factorial:
+	$(CXX) -I $(IDIR) factorial.cpp -o $(EDIR)/factorial
 	
 fibonacci:
 	$(CXX) fibonacci.cpp -o $(EDIR)/fibonacci
@@ -44,3 +41,4 @@ nperfect:
 
 clean: 
 	find . -maxdepth 1 -type f -executable -exec rm () +
+	rm Linux_executables/*
