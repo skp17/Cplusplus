@@ -1,3 +1,16 @@
+This repository contains executibles for Linux and for Windows
+operating systems.
+
+# Dependencies
+* boost c++ libraries (for factorial and bsort programs)
+
+# Makefiles
+On Windows, programs can be built using the command line tool NMAKE, which is included in Visual Studio. To use NMAKE, you must run it in a Developer Command Prompt window using the following command
+```cmd
+nmake -f Makefile.win
+```
+
+
 # fibonacci.cpp
     Displays Fibonacci numbers. Your input determines how many Fibonacci numbers to show.
 

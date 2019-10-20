@@ -6,15 +6,12 @@ CXXFLAGS = -Wall -std=c++11 -static
 IDIR = "C:\Program Files\boost_1_61_0"
 LDIR = "C:\Program Files\boost_1_61_0\stage\lib\libboost_program_options-mgw63-mt-sd-1_61.a"
 EDIR = Windows_executables
-OBJS = factorial bfactorial fibonacci limits prime quadratic_roots rand sizeof sort bsort nperfect
+OBJS = factorial fibonacci limits prime quadratic_roots rand sizeof sort bsort nperfect
 
 all:  $(OBJS)
-
-factorial: factorial.cpp
-	$(CXX) factorial.cpp -o $(EDIR)/$@
 	
-bfactorial: bfactorial.cpp
-	$(CXX) -I $(IDIR) bfactorial.cpp -o $(EDIR)/$@
+factorial: factorial.cpp
+	$(CXX) -I $(IDIR) factorial.cpp -o $(EDIR)/$@
 	
 fibonacci: fibonacci.cpp
 	$(CXX) fibonacci.cpp -o $(EDIR)/$@
@@ -45,3 +42,4 @@ nperfect: nperfect.cpp
 
 clean:
 	del *.exe
+	del Windows_executables/*.exe
